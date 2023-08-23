@@ -1,0 +1,14 @@
+<h3 class="mb-4">List of Tickers</h3>
+<ul class="list-group fs-5 me-5">
+    {{range .Results}}
+    <li>
+        <button
+            hx-get="/values/{{.Ticker}}"
+            hx-trigger="click"
+            hx-target="#stock-details"
+            >
+            {{.Name}}
+        </button>
+    </li>
+    {{end}}
+</ul>
