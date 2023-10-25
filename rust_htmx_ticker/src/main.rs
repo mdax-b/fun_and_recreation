@@ -1,5 +1,5 @@
 pub use self::error::{Error, Result};
-use crate::templates::MyTemplate;
+use crate::templates::Index;
 
 use askama::Template;
 
@@ -25,6 +25,7 @@ async fn main() {
         .route("/", get(handle_main))
         .route("/_assets/*path", get(handle_assets))
         .merge(web::routes_hello::routes_hello())
+        .merge(web::routes_ticker::routes_ticker())
         .layer(middleware::map_response(main_response_mapper));
 
     let addr = SocketAddr::from(([127, 0, 0, 1], 8080));
@@ -59,7 +60,7 @@ async fn handle_assets(Path(path): Path<String>) -> impl IntoResponse {
 }
 
 async fn handle_main() -> impl IntoResponse {
-    let template = MyTemplate {};
+    let template = Index {};
     let reply_html = template.render().unwrap();
     (StatusCode::OK, Html(reply_html).into_response())
 }

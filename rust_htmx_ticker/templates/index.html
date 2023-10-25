@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>HTMX Demo</title>
+    <link rel="stylesheet" type="text/css" href="/_assets/bootstrap.min.css">
+    <script src="/_assets/htmx.min.js"></script>
+</head>
+
+<body class="container">
+    <div class="container-fluid">
+        <h1>
+            Ticker Search Tool
+            <small class="text-muted">With HTMX and Bootstrap CSS</small>
+        </h1>
+        <input class="form-control" type="text" name="ticker"
+            hx-get="/search"
+            hx-trigger="keyup changed delay:500ms"
+            hx-target="#search-results" />
+        <div id="search-results"></div>
+        <div id="stock-details"></div>
+    </div>
+</body>
+
+</html>
